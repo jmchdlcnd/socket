@@ -20,7 +20,7 @@ ns1.on('connection', function (socket) {
 
 	//console.log(io.sockets.sockets);
 	//console.log(io.sockets.sockets);
-	ns1.to(socket.id).emit('news', {'Id: ': socket.id, 'rooms: ': socket.rooms});
+	//ns1.to(socket.id).emit('news', {'Id: ': socket.id, 'rooms: ': socket.rooms});
 
 
 	/*socket.on('trip', function (name) {
