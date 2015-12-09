@@ -19,7 +19,7 @@ ns1.on('connection', function (socket) {
 	socket.join('uno');
 
 	//console.log(io.sockets.sockets);
-	console.log(socket.adapter.rooms);
+	console.log(ns1.clients());
 	ns1.to(socket.id).emit('news', {'Id: ': socket.id, 'rooms: ': socket.rooms});
 
 
