@@ -18,6 +18,7 @@ ns1.on('connection', function (socket) {
 	//ns1.emit('news', { hello: 'soy el 1' });
 	socket.join('uno');
 	socket.join(socket.id);
+	cosnole.log.(ns1.sockets.sockets)
 	ns1.to(socket.id).emit('news', {'Id: ': socket.id, 'rooms: ': socket.rooms});
 
 
