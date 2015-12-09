@@ -16,8 +16,10 @@ var ns1 = io.of('/ns1');
 
 ns1.on('connection', function (socket) {
 	//ns1.emit('news', { hello: 'soy el 1' });
-
+	socket.join('uno');
+	socket.join(socket.id);
 	socket.emit('news', {'Id: ': socket.id, 'rooms: ': socket.rooms});
+
 
 	/*socket.on('trip', function (name) {
 		console.log(name);
