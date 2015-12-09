@@ -17,7 +17,7 @@ var ns1 = io.of('/ns1');
 ns1.on('connection', function (socket) {
 	//ns1.emit('news', { hello: 'soy el 1' });
 
-	socket.emit('news', {hello: 'Ti id es: ' + socket.id});
+	socket.emit('news', {'Id: ': socket.id, 'rooms: ': socket.rooms});
 
 	/*socket.on('trip', function (name) {
 		console.log(name);
