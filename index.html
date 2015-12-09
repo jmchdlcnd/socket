@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+	  //52.32.80.136
+	  var socket = io.connect();
+	  socket.on('news', function (data) {
+	    console.log(data);
+	    socket.emit('my other event', { my: 'data' });
+	  });
+	</script>
+	Holaaaaa
+</body>
+</html>
