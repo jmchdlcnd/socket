@@ -9,10 +9,24 @@ server.listen(1024);
 
 app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
+})
+
+var ns1 = io.of('/ns1');
+var ns2 = io.of('/ns2');
+
+ns1.on('connection', function (socket) {
+	//ns1.emit('news', { hello: 'soy el 1' });
+
+	io.emit('news', {hello: 'conexion en el 1'});
+
+	socket.on('my other event', function (data) {
+		console.log(data);
+	});
 });
 
-io.on('connection', function (socket) {
-	io.emit('news', { hello: 'world' });
+ns2.on('connection', function (socket) {
+	ns2.emit('news', { hello: 'soy el 2' });
+
 	socket.on('my other event', function (data) {
 		console.log(data);
 	});
