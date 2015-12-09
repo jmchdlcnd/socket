@@ -8,16 +8,16 @@
 	<script>
 	  //52.32.80.136
 	  //var socket = io.connect('http://52.32.80.136:1024');
-	  var socket = io.connect('http://52.32.80.136:1024/ns2');
+	 /* var socket = io.connect('http://52.32.80.136:1024/ns2');
 	  socket.on('news', function (data) {
 	    console.log(data);
 	    socket.emit('my other event', { my: 'data' });
-	  });
+	  });*/
 
 	  var socket1 = io.connect('http://52.32.80.136:1024/ns1');
 	  socket1.on('news', function (data) {
 	    console.log(data);
-	    socket1.emit('my other event', { my: 'data' });
+	    //socket1.emit('trip', 'Jose manuel');
 	  });
 	</script>
 	Holaaaaa
