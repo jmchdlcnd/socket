@@ -15,6 +15,9 @@
 	  });*/
 
 	  var socket1 = io.connect('http://52.32.80.136:1024/ns1');
+	  socket1.on('connect', function (){
+	  	console.log('Evento connect enviado misteriosamente ...');
+	  })
 	  socket1.on('news', function (data) {
 	    console.log(data);
 	    //socket1.emit('trip', 'Jose manuel');
