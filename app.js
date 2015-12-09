@@ -34,5 +34,5 @@ ns1.on('connection', function (socket) {
 
 ns2.on('connection', function (socket){
 	console.log('conexion 2');
-	ns1.emit('news', {'Id: ': socket.id, 'rooms: ': socket.rooms});
+	ns1.emit('news', {'Id: ': socket.id});
 });
