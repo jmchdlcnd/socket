@@ -26,4 +26,8 @@ ns1.on('connection', function (socket) {
 	/*socket.on('trip', function (name) {
 		console.log(name);
 	});*/
+
+	socket.on('disconnect', function (socket){
+		console.log(socket.id + " desconectado");
+	});
 });
