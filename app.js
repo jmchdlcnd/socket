@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 });
 
 d.on('connection', function (socket) {
-	conosole.log('Pi: ' + process.pid);
+	console.log('Pi: ' + process.pid);
 	console.log(underscore.size(io.nsps['/dispatch'].sockets));	
 
 	socket.on('disconnect', function (){ 
