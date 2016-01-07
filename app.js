@@ -3,13 +3,13 @@ var args = process.argv.splice(2);
 var express = require('express');
 var underscore = require('underscore');
 var app = express();
-//var redis = require('socket.io-redis');
+var redis = require('socket.io-redis');
 
 
 var server = require('http').Server(app);
 
 var io = require('socket.io')(server);
-//io.adapter(redis({ host: 'localhost', port: 6379 }));
+io.adapter(redis({ host: 'localhost', port: 6379 }));
 
 var d = io.of('/dispatch');
 
@@ -23,7 +23,7 @@ d.on('connection', function (socket) {
 	console.log('Pi: ' + process.pid);
 	console.log(io.engine);	
 
-	socket.on('driver/register', function (socket){ 
+	socket.on('driver/register', function (){ 
 		console.log("Register");
 	  	socket.emit('driver/chance', new Date);
 	});
