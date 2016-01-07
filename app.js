@@ -23,7 +23,7 @@ d.on('connection', function (socket) {
 	console.log('Pi: ' + process.pid);
 	console.log(io.engine);	
 
-	io.emit.('driver/chance', "Yeeeeeah!!! llego!!!");
+	io.emit('driver/chance', "Yeeeeeah!!! llego!!!");
 
 	socket.on('disconnect', function (){ 
 		console.log(socket.id + " desconectado");
