@@ -23,9 +23,9 @@ d.on('connection', function (socket) {
 	console.log('Pi: ' + process.pid);
 	console.log(io.engine);	
 
-	socket.on('driver/register', function (){ 
+	socket.on('driver/register', function (socket){ 
 		console.log("Register");
-	  	io.emit('driver/chance', new Date);
+	  	socket.emit('driver/chance', new Date);
 	});
 
 	socket.on('disconnect', function (){ 
