@@ -25,7 +25,8 @@ d.on('connection', function (socket) {
 
 	socket.on('driver/register', function (){ 
 		console.log("Register");
-	  	socket.emit('driver/chance', new Date);
+	  	//socket.emit('driver/chance', new Date);
+	  	io.emit('driver/chance', new Date);
 	});
 
 	socket.on('disconnect', function (){ 
