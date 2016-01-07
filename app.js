@@ -2,8 +2,9 @@ var args = process.argv.splice(2);
 
 var express = require('express');
 var underscore = require('underscore');
-var redis = require('socket.io-redis');
 var app = express();
+var redis = require('socket.io-redis');
+
 
 var server = require('http').Server(app);
 
@@ -21,6 +22,8 @@ app.get('/', function (req, res) {
 d.on('connection', function (socket) {
 	console.log('Pi: ' + process.pid);
 	console.log(io.engine);	
+
+	io.emit.('driver/chance', "Yeeeeeah!!! llego!!!");
 
 	socket.on('disconnect', function (){ 
 		console.log(socket.id + " desconectado");
