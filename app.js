@@ -2,11 +2,13 @@ var args = process.argv.splice(2);
 
 var express = require('express');
 var underscore = require('underscore');
+var redis = require('socket.io-redis');
 var app = express();
 
 var server = require('http').Server(app);
 
 var io = require('socket.io')(server);
+io.adapter(redis({ host: 'localhost', port: 6379 }));
 
 var d = io.of('/dispatch');
 
