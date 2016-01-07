@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 
 d.on('connection', function (socket) {
 	console.log('Pi: ' + process.pid);
-	console.log(io.sockets.adapter);	
+	console.log(io.sockets.connected);	
 
 	socket.on('driver/register', function (){ 
 		console.log("Register");
