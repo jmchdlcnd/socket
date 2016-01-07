@@ -1,16 +1,14 @@
 {
-  "name": "socket",
-  "version": "1.0.0",
+  "name": "rooms-io",
+  "version": "0.0.1",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jose Manuel Chavez de la Cruz",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.3",
-    "socket.io": "^1.3.7",
     "underscore": "^1.8.3"
   }
 }
