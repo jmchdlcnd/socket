@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 
 d.on('connection', function (socket) {
 	console.log('Pi: ' + process.pid);
-	console.log(io.sockets);	
+	console.log(io.engine);	
 
 	socket.on('disconnect', function (){ 
 		console.log(socket.id + " desconectado");
