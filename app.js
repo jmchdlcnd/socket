@@ -3,13 +3,14 @@ var args = process.argv.splice(2);
 var express = require('express');
 var underscore = require('underscore');
 var app = express();
-var redis = require('socket.io-redis');
-
+var sioRedis = require('socket.io-redis');
+var redis = require('redis');
+var client = redis.createClient();
 
 var server = require('http').Server(app);
 
 var io = require('socket.io')(server);
-io.adapter(redis({ host: 'localhost', port: 6379 }));
+io.adapter(sioRedis({ host: 'localhost', port: 6379 }));
 
 var d = io.of('/dispatch');
 
@@ -19,14 +20,32 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/rider', function (req, res) {
+  res.sendFile(__dirname + '/rider.html');
+});
+
 d.on('connection', function (socket) {
 	console.log('Pi: ' + process.pid);
-	console.log(io.sockets.connected);	
+	//console.log(io.sockets.connected);	
 
-	socket.on('driver/register', function (){ 
-		console.log("Register");
-	  	//socket.emit('driver/chance', new Date);
-	  	socket.broadcast.emit('driver/chance', new Date);
+	socket.on('driver/register', function (data){ 
+		console.log(data);
+	  	client.set(data.driverId, socket.id, function (err, result){
+	  		if(err) return console.log('Error al almacenar el socketId en Redis');
+	  		
+	  		console.log('Driver regitrado: ');
+	  		console.log(data.driverId);
+	  		var customId = '565cee84c05316b50656acf8';
+	  		//socket.broadcast.emit('driver/chance', new Date); //Emitir mensaje a todos sin incluir el socket que desecandeno el evento
+	  		client.get(customId, function (err, socketId){
+	  			if(err) return console.log('Error al recuperar el socketId en Redis');
+	  			
+	  			console.log('El socketId recuperado fue: ');
+	  			console.log(socketId);
+
+	  			d.to(socketId).emit('driver/chance', new Date);
+	  		});
+	  	});
 	});
 
 	socket.on('disconnect', function (){ 

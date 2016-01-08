@@ -4,33 +4,24 @@
 	<title></title>
 </head>
 <body>
-	<input id="btn1" type="button" value="Pedir viaje">
+	<input id="btn1" type="button" value="Solicitar viaje">
 
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
-	  var dispatch = io.connect('http://localhost:3000/dispatch');
-	  var customId = '56687bf6ea4ffb4231a74806';
+	  var io = io.connect('http://localhost:1024/dispatch');
 
-	  console.log(customId);
+	  var riderId = 123456;
 
-	  dispatch.on('connect', function (){
-	  	dispatch.emit('rider/register', { riderId: customId });
-	  });
-
-	  dispatch.on('trip/curso', function (){
-	  	//dispatch.emit('rider/register', { customId: customId });
-	  	console.log('Driver en camino ...');
-	  });
-
-	  dispatch.on('trip/finished', function (){
-	  	//dispatch.emit('rider/register', { customId: customId });
-	  	console.log('Bajateeee putooooooo!!! ... pero antes pagameeeeee!!!');
+	  io.on('connect', function (){
+	  	io.emit('driver/register', { driverId: riderId });
+	  	console.log('Conectadoooo');
 	  });
 
 	  document.getElementById('btn1').onclick = function (){
-	  	console.log("Solicitando viajeeeeee");
-	  	dispatch.emit('rider/request', { riderId: customId });
+	  	io.emit('rider/request', {riderId: riderId});
 	  }
+
 	</script>
+	Holaaaaa
 </body>
 </html>

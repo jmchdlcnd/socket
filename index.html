@@ -10,16 +10,16 @@
 	<script>
 	  var io = io.connect('http://localhost:1024/dispatch');
 
-	  var riderId = 12345;
+	  var driverId = 12345;
 
 	  io.on('connect', function (){
-	  	//dispatch.emit('driver/register', { riderId: riderId });
+	  	io.emit('driver/register', { driverId: driverId });
 	  	console.log('Conectadoooo');
 	  });
 
-	  document.getElementById('btn1').onclick = function (){
-	  	io.emit('rider/request', {riderId: riderId});
-	  }
+	  io.on('evento', function (){
+	  	console.log("Yeaaaaaaaaaah!!!!");
+	  });
 
 	</script>
 	Holaaaaa
