@@ -43,7 +43,7 @@ d.on('connection', function (socket) {
 	  			console.log('El socketId recuperado fue: ');
 	  			console.log(socketId);
 
-	  			d.to(socketId).emit('driver/chance', new Date);
+	  			io.to(socketId).emit('driver/chance', new Date);
 	  		});
 	  	});
 	});
