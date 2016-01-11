@@ -7,6 +7,8 @@ var sioRedis = require('socket.io-redis');
 var redis = require('redis');
 var client = redis.createClient();
 
+var ioEmitter = require('socket.io-emitter')({ host: '127.0.0.1', port: 6379 });
+
 var server = require('http').Server(app);
 
 var io = require('socket.io')(server);
@@ -36,6 +38,7 @@ d.on('connection', function (socket) {
 	  		console.log('Driver regitrado: ');
 	  		console.log(data.driverId);
 	  		var customId = '565cee84c05316b50656acf8';
+	  		//var customId = 12345;
 	  		//socket.broadcast.emit('driver/chance', new Date); //Emitir mensaje a todos sin incluir el socket que desecandeno el evento
 	  		client.get(customId, function (err, socketId){
 	  			if(err) return console.log('Error al recuperar el socketId en Redis');
@@ -43,7 +46,8 @@ d.on('connection', function (socket) {
 	  			console.log('El socketId recuperado fue: ');
 	  			console.log(socketId);
 
-	  			io.to(socketId).emit('driver/chance', new Date);
+	  			//io.to(socketId).emit('driver/chance', new Date);
+	  			ioEmitter.to(socketId).emit('driver/chance', new Date);
 	  		});
 	  	});
 	});
