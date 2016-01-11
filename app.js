@@ -47,7 +47,8 @@ d.on('connection', function (socket) {
 	  			console.log(socketId);
 
 	  			//io.to(socketId).emit('driver/chance', new Date);
-	  			ioEmitter.of('/dispatch').sockets[socketId].emit('driver/chance', new Date);
+	  			ioEmitter.of('/dispatch').emit('driver/chance', new Date);
+	  			console.log(ioEmitter);
 	  		});
 	  	});
 	});
